@@ -1,5 +1,5 @@
 # store-data-cli-app
-This is a basic implementation to manage Transaction entities in a CLI tool. It uses the [Data Access Object](http://best-practice-software-engineering.ifs.tuwien.ac.at/patterns/dao.html) to reuse the same inteface without having to change the code that references it (relies on dependency injection as well).
+This is a basic implementation to manage Transaction entities through a CLI tool. It uses the [Data Access Object](http://best-practice-software-engineering.ifs.tuwien.ac.at/patterns/dao.html) pattern to reuse the same inteface without having to change the code that references it (relies on dependency injection as well).
 
 # Prerequisites
  * jdk (>=1.8 required)
