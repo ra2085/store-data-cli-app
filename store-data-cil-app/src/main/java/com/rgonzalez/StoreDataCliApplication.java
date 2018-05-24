@@ -4,6 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.rgonzalez.dao.TransactionDAO;
 import com.rgonzalez.exceptions.TransactionNotFoundException;
 import java.io.File;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
 import java.util.Properties;
 import javax.sql.DataSource;
 import javax.validation.ConstraintViolationException;
@@ -52,7 +56,12 @@ public class StoreDataCliApplication  implements CommandLineRunner{
     public static void main(String[] args) throws Exception {
         Properties p = System.getProperties();
         //Here I'm making sure the app is storing the data under the folder where the application is.
-        p.setProperty("derby.system.home", (new File(".")).getAbsolutePath());
+        ProtectionDomain pDomain = StoreDataCliApplication.class.getProtectionDomain();
+        CodeSource cSource = pDomain.getCodeSource();
+        String sPath = cSource.getLocation().getPath();
+        String path = sPath.substring(0, sPath.indexOf("store-data-cli-app-"));
+        path = path.substring(5);
+        p.setProperty("derby.system.home", path);
         SpringApplication app = new SpringApplication(StoreDataCliApplication.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
